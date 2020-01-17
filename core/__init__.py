@@ -130,6 +130,6 @@ class SnakeBoard:
             check = False
             for coord in self.snake.iter_through_body_cells():
                 if coord[0] == self.food_coordinate[0] and coord[1] == self.food_coordinate[1]:
-                    self.food_coordinate = [random.randint(0, self.SIZE - 1), random.randint(0, self.SIZE - 1)]
+                    self.food_coordinate = self.snake.food_location = [random.randint(0, self.SIZE - 1), random.randint(0, self.SIZE - 1)]
                     check = True
                     break

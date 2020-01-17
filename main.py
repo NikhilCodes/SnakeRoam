@@ -9,7 +9,7 @@ WINDOW_MARGIN = (40, 30, 20, 10)
 GRID_COLOR = (100, 100, 100)
 GRID_SIZE = 20
 SNAKE_INIT_LEN = 12
-SNAKE_BODY_COLOR = (255, 255, 0)
+SNAKE_BODY_COLOR = (255, 200, 0)
 SNAKE_HEAD_COLOR = (155, 255, 0)
 FOOD_COLOR = (255, 0, 0)
 FOOD_SIZE = GRID_SIZE // 2 - 3
@@ -98,7 +98,7 @@ def main():
         pygame.display.flip()
 
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_q):
                 pygame.quit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
