@@ -4,22 +4,32 @@ import pygame
 from core import SnakeBoard
 
 
-# CONSTANTS
+# SAFE-CONSTANTS
 WINDOW_SIZE = 500
 WINDOW_MARGIN = (40, 30, 20, 10)
 GRID_COLOR = (100, 100, 100)
 GRID_SIZE = 20
 SNAKE_INIT_LEN = 12
-SNAKE_BODY_COLOR = (255, 200, 0)
-SNAKE_HEAD_COLOR = (155, 255, 0)
+SNAKE_BODY_COLOR = (255, 255, 0)
+SNAKE_HEAD_PATH = 'res/snake-head.png'
 FOOD_COLOR = (255, 0, 0)
 FOOD_SIZE = GRID_SIZE // 2 - 3
 #
+
+# UNSAFE-CONSTANTS
+angles = {
+    1: 0,
+    0: 270,
+    3: 90,
+    2: 180
+}
 
 pygame.init()
 
 screen = pygame.display.set_mode([WINDOW_SIZE, WINDOW_SIZE + 50])
 clock = pygame.time.Clock()
+snake_head = pygame.image.load(SNAKE_HEAD_PATH)
+snake_head = pygame.transform.scale(snake_head, (GRID_SIZE, GRID_SIZE))
 
 screen.fill((0, 0, 0))
 pygame.display.set_caption('Snake Game')
@@ -40,14 +50,11 @@ def draw_snake(snake_board):
                          ])
 
     coord = snake_board.snake.head.coordinate
-    pygame.draw.rect(screen,
-                     SNAKE_HEAD_COLOR,
-                     [
-                         coord[0] * GRID_SIZE,
-                         coord[1] * GRID_SIZE,
-                         GRID_SIZE,
-                         GRID_SIZE
-                     ])
+    snake_head_tmp = pygame.transform.rotate(snake_head, angles[snake_board.snake.get_direction_facing()])
+    screen.blit(snake_head_tmp, (
+        coord[0] * GRID_SIZE,
+        coord[1] * GRID_SIZE,
+    ))
 
 
 def draw_food(snake_board):
@@ -101,6 +108,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_q):
                 pygame.quit()
+                return 0
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = event.pos
 
@@ -169,4 +177,3 @@ def mainloop():
 
 if __name__ == '__main__':
     main()
-    pygame.quit()

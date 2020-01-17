@@ -59,15 +59,15 @@ class Snake:
         snake_neck_coordinate = self.head.next.coordinate
 
         if snake_coordinate[0] == snake_neck_coordinate[0]:  # Horizontal
-            if snake_coordinate[1] > snake_neck_coordinate[1]:  # Facing Right
-                return 1
-            else:  # Facing Left
-                return 0
-        else:  # Vertical
-            if snake_coordinate[0] > snake_neck_coordinate[0]:  # Facing Down
+            if snake_coordinate[1] > snake_neck_coordinate[1]:  # Facing Down
                 return 3
             else:  # Facing Up
+                return 0
+        else:  # Vertical
+            if snake_coordinate[0] > snake_neck_coordinate[0]:  # Facing Right
                 return 2
+            else:  # Facing Left
+                return 1
 
     def move(self, direction):
         """
@@ -110,7 +110,7 @@ class Snake:
         self.prepend(next_coordinate)
 
     def iter_through_body_cells(self):
-        curr_cell = self.head
+        curr_cell = self.head.next
         while curr_cell:
             yield curr_cell.coordinate
             curr_cell = curr_cell.next
