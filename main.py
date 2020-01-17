@@ -3,6 +3,7 @@ import time
 import pygame
 from core import SnakeBoard
 
+
 # CONSTANTS
 WINDOW_SIZE = 500
 WINDOW_MARGIN = (40, 30, 20, 10)

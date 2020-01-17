@@ -5,3 +5,4 @@
 .idea/workspace.xml
 core/__pycache__/__init__.cpython-37.pyc
 .idea/vcs.xml
+core/__pycache__/

@@ -1,4 +1,5 @@
 import random
+from core.sound_effects import play_collision, play_apple_bite
 
 
 class Snake:
@@ -90,6 +91,7 @@ class Snake:
 
         if -1 in next_coordinate or max(next_coordinate) >= self.box_size:
             self.is_alive = False
+            play_collision()
             print("Collision with wall!")
             return -1  # Signifies Collision with Wall
 
@@ -101,6 +103,7 @@ class Snake:
         if next_coordinate != self.food_location:
             self.pop()
         else:
+            play_apple_bite()
             self.food_location[0] = None
             self.food_location[1] = None
 
