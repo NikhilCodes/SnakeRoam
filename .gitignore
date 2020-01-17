@@ -1,8 +1,2 @@
-.idea/inspectionProfiles
-.idea/misc.xml
-.idea/modules.xml
-.idea/Snake-Roam.iml
-.idea/workspace.xml
-core/__pycache__/__init__.cpython-37.pyc
-.idea/vcs.xml
+.idea/
 core/__pycache__/
