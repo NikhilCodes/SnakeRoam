@@ -9,6 +9,8 @@ WINDOW_SIZE = 500
 WINDOW_MARGIN = (40, 30, 20, 10)
 GRID_COLOR = (100, 100, 100)
 GRID_SIZE = 20
+FLOOR_COLOR_1 = (60, 155, 0)
+FLOOR_COLOR_2 = (60, 120, 0)
 SNAKE_INIT_LEN = 12
 SNAKE_BODY_COLOR = (255, 255, 0)
 SNAKE_HEAD_PATH = 'res/snake-head.png'
@@ -136,17 +138,20 @@ def mainloop():
 
         # Drawing horizontal grid lines
         screen.fill((0, 0, 0))
-        for y in range(1, WINDOW_SIZE // GRID_SIZE + 1):
-            pygame.draw.line(screen,
-                             GRID_COLOR,
-                             (GRID_SIZE * y, 0),
-                             (GRID_SIZE * y, WINDOW_SIZE))
-
-        for x in range(1, WINDOW_SIZE // GRID_SIZE + 1):
-            pygame.draw.line(screen,
-                             GRID_COLOR,
-                             (0, GRID_SIZE * x),
-                             (WINDOW_SIZE, GRID_SIZE * x))
+        for x in range(WINDOW_SIZE//GRID_SIZE):
+            for y in range(WINDOW_SIZE//GRID_SIZE):
+                if (x + y) % 2:
+                    color = FLOOR_COLOR_1
+                else:
+                    color = FLOOR_COLOR_2
+                pygame.draw.rect(screen,
+                                 color,
+                                 [
+                                     x * GRID_SIZE,
+                                     y * GRID_SIZE,
+                                     GRID_SIZE,
+                                     GRID_SIZE
+                                 ])
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_q):
