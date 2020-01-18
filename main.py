@@ -31,7 +31,7 @@ pygame.init()
 screen = pygame.display.set_mode([WINDOW_SIZE, WINDOW_SIZE + 50])
 clock = pygame.time.Clock()
 snake_head = pygame.image.load(SNAKE_HEAD_PATH)
-snake_head = pygame.transform.scale(snake_head, (GRID_SIZE, GRID_SIZE))
+snake_head = pygame.transform.scale(snake_head, (GRID_SIZE + 10, GRID_SIZE + 10))
 
 screen.fill((0, 0, 0))
 pygame.display.set_caption('Snake Game')
@@ -54,8 +54,8 @@ def draw_snake(snake_board):
     coord = snake_board.snake.head.coordinate
     snake_head_tmp = pygame.transform.rotate(snake_head, angles[snake_board.snake.get_direction_facing()])
     screen.blit(snake_head_tmp, (
-        coord[0] * GRID_SIZE,
-        coord[1] * GRID_SIZE,
+        coord[0] * GRID_SIZE - 5,
+        coord[1] * GRID_SIZE - 5,
     ))
 
 
