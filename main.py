@@ -25,6 +25,12 @@ angles = {
 }
 
 pygame.init()
+# - # Drawing Vertical Lines
+for x in range(WINDOW_SIZE//GRID_SIZE):
+    pygame.draw.line(screen, GRID_COLOR, (x * GRID_SIZE, 0), (x * GRID_SIZE, WINDOW_SIZE))
+
+# Updating changes on screen
+pygame.display.flip()
 
 screen = pygame.display.set_mode([WINDOW_SIZE, WINDOW_SIZE + 50])
 clock = pygame.time.Clock()
